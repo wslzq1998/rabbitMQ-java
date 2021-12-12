@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzq.dao.OrderDao">
+    <select id="selectOrder" resultType="com.lzq.model.Order">
+        SELECT
+        id as orderId,goods_id as goodsId,user_id as userId,pay_status as payStatus
+        FROM
+        order_info
+    </select>
+    <insert id="orderInsert" parameterType="com.lzq.model.Order" keyColumn="id" keyProperty="orderId" useGeneratedKeys="true">
+        insert into order_info(user_id, goods_id, pay_status) values(#{userId},#{goodsId},#{payStatus})
+    </insert>
+
+
+    <update id="updateOrderStatus" parameterType="java.lang.String">
+        UPDATE order_info
+        SET pay_status=#{payStatus}
+        WHERE id=#{orderId}
+    </update>
+
+</mapper>
