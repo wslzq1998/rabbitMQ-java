@@ -42,6 +42,7 @@ public class OrderController {
         order.setPayStatus("0");
         order.setUserId(userId);
         int insertCount = orderService.orderInsert(order);
+        System.out.println(insertCount);
         return "生成订单成功";
     }
     @GetMapping("/orderSelect")
