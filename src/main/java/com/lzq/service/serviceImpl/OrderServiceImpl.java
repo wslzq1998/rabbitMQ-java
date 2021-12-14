@@ -33,18 +33,20 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public int orderInsert(Order order){
-        MessagePostProcessor messagePostProcessor = message -> {
-            MessageProperties messageProperties = message.getMessageProperties();
-            //设置编码
-            messageProperties.setContentEncoding("utf-8");
-            //设置过期时间10*1000毫秒
-            messageProperties.setExpiration("30000");
-            //设置全局唯一ID
-            messageProperties.setCorrelationId(UUID.randomUUID().toString());
-            return message;
-        };
-        int count = orderDao.orderInsert(order);
-        rabbitTemplate.convertAndSend(BUSINESS_EXCHANGE_NAME,BUSINESS_QUEUEB_ROUTING_KEY, JSON.toJSONString(order),messagePostProcessor);
+//        MessagePostProcessor messagePostProcessor = message -> {
+//            MessageProperties messageProperties = message.getMessageProperties();
+//            //设置编码
+//            messageProperties.setContentEncoding("utf-8");
+//            //设置过期时间10*1000毫秒
+//            messageProperties.setExpiration("30000");
+//            //设置全局唯一ID
+//            messageProperties.setCorrelationId(UUID.randomUUID().toString());
+//            return message;
+//        };
+//        int count = orderDao.orderInsert(order);
+//        rabbitTemplate.convertAndSend(BUSINESS_EXCHANGE_NAME,BUSINESS_QUEUEB_ROUTING_KEY, JSON.toJSONString(order),messagePostProcessor);
+//
+          int count = orderDao.orderInsert(order);
         return count;
     }
 

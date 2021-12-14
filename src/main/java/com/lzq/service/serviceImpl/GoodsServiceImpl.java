@@ -77,4 +77,9 @@ public class GoodsServiceImpl implements GoodsService, Serializable {
         }
         return "error";
     }
+
+    @Override
+    public int insertGoods(Goods goods) {
+        return goodsDao.insertGoods(goods);
+    }
 }

@@ -7,6 +7,9 @@
         FROM
              goods
     </select>
+    <insert id="insertGoods" parameterType="com.lzq.model.Goods" useGeneratedKeys="true">
+        INSERT INTO goods values(#{goodsId},#{goodsName},#{goodsPrice},#{goodsCount})
+    </insert>
 
 
     <update id="updateGoods" parameterType="java.lang.Integer">

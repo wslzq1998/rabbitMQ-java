@@ -8,4 +8,5 @@ public interface GoodsService {
     List<Goods> selectGoods();
     int updateGoods(Integer id);
     String secKillGoods(Integer id);
+    int insertGoods(Goods goods);
 }

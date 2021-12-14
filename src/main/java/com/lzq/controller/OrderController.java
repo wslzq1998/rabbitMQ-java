@@ -5,6 +5,7 @@ import com.lzq.config.RabbitMQConfig;
 import com.lzq.model.Order;
 import com.lzq.service.GoodsService;
 import com.lzq.service.OrderService;
+import com.lzq.service.TransActionalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -23,6 +24,8 @@ public class OrderController {
     private GoodsService goodsService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private TransActionalService transActionalService;
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
@@ -49,5 +52,18 @@ public class OrderController {
     @ResponseBody
     public List<Order> selectOrderList(){
         return orderService.selectOrder();
+    }
+
+    @GetMapping("/insert")
+    @ResponseBody
+    public String insertTransActionalTest(){
+        transActionalService.goodsAndOrderInsert();
+        return "success";
+    }
+    @GetMapping("/goodsInsert")
+    @ResponseBody
+    public String goodsInsertTransActionalTest(){
+        transActionalService.goodsInsert();
+        return "success";
     }
 }

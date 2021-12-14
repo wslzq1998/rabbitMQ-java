@@ -10,4 +10,5 @@ import java.util.List;
 public interface GoodsDao {
     List<Goods> selectGoods();
     int updateGoods(Integer id);
+    int insertGoods(Goods goods);
 }
